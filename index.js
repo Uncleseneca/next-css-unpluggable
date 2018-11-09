@@ -26,7 +26,7 @@ module.exports = (nextConfig = {}) => {
         test: /\.css$/,
         oneOf: [
           {
-            resourceQuery: /CSSModulesDisbale/,
+            resourceQuery: /CSSModulesDisable/,
             use: crateStyleConfig(false, true)
           },
           {
