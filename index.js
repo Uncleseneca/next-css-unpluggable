@@ -35,7 +35,7 @@ module.exports = (nextConfig = {}) => {
           },
           {
             resourceQuery: /postCSSAndCSSModulesDisable/,
-            use: crateStyleConfig(false, true)
+            use: crateStyleConfig(false, false)
           },
           {
             use: options.defaultLoaders.css

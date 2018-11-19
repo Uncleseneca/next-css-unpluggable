@@ -14,7 +14,7 @@ module.exports = (
     isServer,
     postcssLoaderOptions = {},
     loaders = [],
-    disablePostcss = false,
+    postCSS = true,
   }
 ) => {
   // We have to keep a list of extensions for the splitchunk config
@@ -96,7 +96,7 @@ module.exports = (
     !isServer && dev && 'extracted-loader',
     !isServer && ExtractCssChunks.loader,
     cssLoader,
-    !disablePostcss && postcssLoader,
+    postCSS && postcssLoader,
     ...loaders
   ].filter(Boolean)
 }
