@@ -124,7 +124,7 @@ For a list of supported options, [refer to the webpack `css-loader` README](http
 
 #### Without CSS modules
 
-```import 'antd/dist/antd.css?CSSModulesDisbale'```
+```import 'antd/dist/antd.css?CSSModulesDisable'```
 
 #### Without post-css
 
