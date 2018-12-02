@@ -1,17 +1,17 @@
-# Next.js + CSS
+# next-css-unpluggable
 
-Import `.css` files in your Next.js project
+Import `.css` files in your Next.js project and disable CSS modules and postCSS when you don't need them
 
 ## Installation
 
 ```
-npm install --save @zeit/next-css
+npm install --save next-css-unpluggable
 ```
 
 or
 
 ```
-yarn add @zeit/next-css
+yarn add next-css-unpluggable
 ```
 
 ## Usage
@@ -25,7 +25,7 @@ Create a `next.config.js` in the root of your project (next to pages/ and packag
 
 ```js
 // next.config.js
-const withCSS = require('@zeit/next-css')
+const withCSS = require('next-css-unpluggable')
 module.exports = withCSS()
 ```
 
@@ -51,7 +51,7 @@ __Note: CSS files can _not_ be imported into your [`_document.js`](https://githu
 
 ```js
 // next.config.js
-const withCSS = require('@zeit/next-css')
+const withCSS = require('next-css-unpluggable')
 module.exports = withCSS({
   cssModules: true
 })
@@ -81,7 +81,7 @@ For instance, [to enable locally scoped CSS modules](https://github.com/css-modu
 
 ```js
 // next.config.js
-const withCSS = require('@zeit/next-css')
+const withCSS = require('next-css-unpluggable')
 module.exports = withCSS({
   cssModules: true,
   cssLoaderOptions: {
@@ -140,7 +140,7 @@ Create a `next.config.js` in your project
 
 ```js
 // next.config.js
-const withCSS = require('@zeit/next-css')
+const withCSS = require('next-css-unpluggable')
 module.exports = withCSS()
 ```
 
@@ -176,7 +176,7 @@ For example, to pass theme env variables to postcss-loader, you can write:
 
 ```js
 // next.config.js
-const withCSS = require('@zeit/next-css')
+const withCSS = require('next-css-unpluggable')
 module.exports = withCSS({
   postcssLoaderOptions: {
     parser: true,
@@ -197,7 +197,7 @@ Optionally you can add your custom Next.js configuration as parameter
 
 ```js
 // next.config.js
-const withCSS = require('@zeit/next-css')
+const withCSS = require('next-css-unpluggable')
 module.exports = withCSS({
   webpack(config, options) {
     return config
