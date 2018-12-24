@@ -41,7 +41,7 @@ module.exports = (
           : 'static/css/[name].[contenthash:8].css',
         chunkFilename: dev
           ? 'static/css/[name].chunk.css'
-          : 'static/css/[name].[contenthash:8].chunk.css'
+          : 'static/css/[name].[contenthash:8].chunk.css',
       })
     )
     extractCssInitialized = true
@@ -74,6 +74,7 @@ module.exports = (
       {},
       {
         modules: cssModules,
+        localIdentName: dev ? '[name]__[local]--[hash:base64:5]' : '[hash:base64:5]',
         minimize: !dev,
         sourceMap: dev,
         importLoaders: loaders.length + (postcssLoader ? 1 : 0)
