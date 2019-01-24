@@ -1,9 +1,12 @@
 {
   "name": "next-css-unpluggable",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "main": "index.js",
   "license": "MIT",
   "repository": "uncleseneca/next-css",
+  "scripts": {
+    "release": "standard-version"
+  },
   "dependencies": {
     "css-loader": "1.0.0",
     "extract-css-chunks-webpack-plugin": "^3.2.0",
@@ -13,6 +16,20 @@
     "postcss-loader": "3.0.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^7.3.2",
+    "@commitlint/config-conventional": "^7.3.1",
+    "cz-conventional-changelog": "^2.1.0",
+    "standard-version": "^4.4.0",
     "webpack": "^4.16.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   }
 }
