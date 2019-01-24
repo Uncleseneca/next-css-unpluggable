@@ -1,8 +1,8 @@
-const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
-const findUp = require('find-up');
+const ExtractCssChunks = require('extract-css-chunks-webpack-plugin')
+const findUp = require('find-up')
 
-const fileExtensions = new Set();
-let extractCssInitialized = false;
+const fileExtensions = new Set()
+let extractCssInitialized = false
 
 module.exports = (
   config,
@@ -18,7 +18,7 @@ module.exports = (
 ) => {
   // We have to keep a list of extensions for the splitchunk config
   for (const extension of extensions) {
-    fileExtensions.add(extension);
+    fileExtensions.add(extension)
   }
 
   if (!isServer) {
@@ -27,7 +27,7 @@ module.exports = (
       test: new RegExp(`\\.+(${[...fileExtensions].join('|')})$`),
       chunks: 'all',
       enforce: true
-    };
+    }
   }
 
   if (!isServer && !extractCssInitialized) {
@@ -44,22 +44,22 @@ module.exports = (
         orderWarning: false,
         reloadAll: true
       })
-    );
-    extractCssInitialized = true;
+    )
+    extractCssInitialized = true
   }
 
   if (!dev) {
     if (!Array.isArray(config.optimization.minimizer)) {
-      config.optimization.minimizer = [];
+      config.optimization.minimizer = []
     }
     const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
-    config.optimization.minimizer.push(new OptimizeCssAssetsWebpackPlugin({}));
+    config.optimization.minimizer.push(new OptimizeCssAssetsWebpackPlugin({}))
   }
 
   const postcssConfig = findUp.sync('postcss.config.js', {
     cwd: config.context
-  });
-  let postcssLoader;
+  })
+  let postcssLoader
 
   if (postcssConfig) {
     // Copy the postcss-loader config options first.
@@ -67,14 +67,14 @@ module.exports = (
       {},
       postcssLoaderOptions.config,
       { path: postcssConfig }
-    );
+    )
 
     postcssLoader = {
       loader: 'postcss-loader',
       options: Object.assign({}, postcssLoaderOptions, {
         config: postcssOptionsConfig
       })
-    };
+    }
   }
 
   const cssLoader = {
@@ -91,16 +91,16 @@ module.exports = (
       },
       cssLoaderOptions
     )
-  };
+  }
 
   // When not using css modules we don't transpile on the server
   if (isServer && !cssLoader.options.modules) {
-    return ['ignore-loader'];
+    return ['ignore-loader']
   }
 
   // When on the server and using css modules we transpile the css
   if (isServer && cssLoader.options.modules) {
-    return [cssLoader, postcssLoader, ...loaders].filter(Boolean);
+    return [cssLoader, postcssLoader, ...loaders].filter(Boolean)
   }
 
   return [
@@ -109,5 +109,5 @@ module.exports = (
     cssLoader,
     postcssLoader,
     ...loaders
-  ].filter(Boolean);
-};
+  ].filter(Boolean)
+}
