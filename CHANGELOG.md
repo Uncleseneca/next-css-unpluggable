@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.1.8"></a>
+## [2.1.8](http://next-css-unpluggable/compare/v2.1.7...v2.1.8) (2019-01-24)
+
+
+### Bug Fixes
+
+* fix _document.js crash ([b381bf1](http://next-css-unpluggable/commits/b381bf1))
+
+
+
 <a name="2.1.7"></a>
 ## [2.1.7](https://github.com/uncleseneca/next-css/compare/v2.1.6...v2.1.7) (2019-01-24)
 
