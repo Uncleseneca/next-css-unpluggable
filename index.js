@@ -1,4 +1,4 @@
-const cssLoaderConfig = require('./css-loader-config')
+const cssLoaderConfig = require('./css-loader-config');
 
 module.exports = (nextConfig = {}) => {
   return Object.assign({}, nextConfig, {
@@ -6,48 +6,48 @@ module.exports = (nextConfig = {}) => {
       if (!options.defaultLoaders) {
         throw new Error(
           'This plugin is not compatible with Next.js versions below 5.0.0 https://err.sh/next-plugins/upgrade'
-        )
+        );
       }
 
-      const { dev, isServer } = options
-      const { cssModules, cssLoaderOptions, postcssLoaderOptions } = nextConfig
+      const { dev, isServer } = options;
+      const { cssModules, cssLoaderOptions, postcssLoaderOptions } = nextConfig;
 
-      const crateStyleConfig = (cssModules, disablePostcss) => cssLoaderConfig(config, {
-        cssModules,
-        cssLoaderOptions,
-        dev,
-        isServer,
-        disablePostcss
-      });
-
-      options.defaultLoaders.css = crateStyleConfig(cssModules);
+      const createStyleConfig = cssModules =>
+        (options.defaultLoaders.css = cssLoaderConfig(config, {
+          extensions: ['css'],
+          cssModules,
+          cssLoaderOptions,
+          postcssLoaderOptions,
+          dev,
+          isServer
+        }));
 
       config.module.rules.push({
         test: /\.css$/,
         oneOf: [
           {
             resourceQuery: /CSSModulesDisable/,
-            use: crateStyleConfig(false, true)
+            use: createStyleConfig(false)
           },
           {
-            resourceQuery: /postCSSDisable/,
-            use: crateStyleConfig(true, false)
-          },
-          {
-            resourceQuery: /postCSSAndCSSModulesDisable/,
-            use: crateStyleConfig(false, false)
-          },
-          {
-            use: options.defaultLoaders.css
+            use: createStyleConfig(true)
           }
-        ]
-      })
+        ],
+        issuer(issuer) {
+          if (issuer.match(/pages[\\/]_document\.js$/)) {
+            throw new Error(
+              'You can not import CSS files in pages/_document.js, use pages/_app.js instead.'
+            );
+          }
+          return true;
+        }
+      });
 
       if (typeof nextConfig.webpack === 'function') {
-        return nextConfig.webpack(config, options)
+        return nextConfig.webpack(config, options);
       }
 
-      return config
+      return config;
     }
-  })
-}
+  });
+};
