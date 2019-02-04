@@ -21,7 +21,7 @@ module.exports = (
     fileExtensions.add(extension)
   }
 
-  if (!isServer) {
+  if (!isServer && config.optimization.splitChunks.cacheGroups) {
     config.optimization.splitChunks.cacheGroups.styles = {
       name: 'styles',
       test: new RegExp(`\\.+(${[...fileExtensions].join('|')})$`),
