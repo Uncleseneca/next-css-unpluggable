@@ -1,16 +1,16 @@
-const cssLoaderConfig = require('./css-loader-config')
+const cssLoaderConfig = require('./css-loader-config');
 
 module.exports = (nextConfig = {}) => {
   return Object.assign({}, nextConfig, {
     webpack(config, options) {
       if (!options.defaultLoaders) {
         throw new Error(
-          'This plugin is not compatible with Next.js versions below 5.0.0 https://err.sh/next-plugins/upgrade',
-        )
+          'This plugin is not compatible with Next.js versions below 5.0.0 https://err.sh/next-plugins/upgrade'
+        );
       }
 
-      const { dev, isServer } = options
-      const { cssLoaderOptions, postcssLoaderOptions } = nextConfig
+      const { dev, isServer } = options;
+      const { cssLoaderOptions, postcssLoaderOptions } = nextConfig;
 
       const createStyleConfig = cssModules =>
         (options.defaultLoaders.css = cssLoaderConfig(config, {
@@ -19,35 +19,35 @@ module.exports = (nextConfig = {}) => {
           cssLoaderOptions,
           postcssLoaderOptions,
           dev,
-          isServer,
-        }))
+          isServer
+        }));
 
       config.module.rules.push({
         test: /\.css$/,
         oneOf: [
           {
             resourceQuery: /CSSModulesDisable/,
-            use: createStyleConfig(false),
+            use: createStyleConfig(false)
           },
           {
-            use: createStyleConfig(true),
-          },
+            use: createStyleConfig(true)
+          }
         ],
         issuer(issuer) {
           if (issuer.match(/pages[\\/]_document\.js$/)) {
             throw new Error(
-              'You can not import CSS files in pages/_document.js, use pages/_app.js instead.',
-            )
+              'You can not import CSS files in pages/_document.js, use pages/_app.js instead.'
+            );
           }
-          return true
-        },
-      })
+          return true;
+        }
+      });
 
       if (typeof nextConfig.webpack === 'function') {
-        return nextConfig.webpack(config, options)
+        return nextConfig.webpack(config, options);
       }
 
-      return config
-    },
-  })
-}
+      return config;
+    }
+  });
+};
