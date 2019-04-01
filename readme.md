@@ -1,6 +1,6 @@
 # next-css-unpluggable
 
-Import `.css` files in your Next.js project and disable CSS modules and postCSS when you don't need them
+Import `.css` files in your Next.js project and disable CSS modules when you don't need them
 
 ## Installation
 
