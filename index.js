@@ -12,7 +12,7 @@ module.exports = (nextConfig = {}) => {
       const { dev, isServer } = options
       const { cssLoaderOptions, postcssLoaderOptions } = nextConfig
 
-      const createStyleConfig = cssModules =>
+      const createStyleConfig = (cssModules) =>
         (options.defaultLoaders.css = cssLoaderConfig(config, {
           extensions: ['css'],
           cssModules,
