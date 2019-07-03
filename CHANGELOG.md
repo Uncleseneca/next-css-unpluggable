@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.1.16"></a>
+## [2.1.16](http://next-css-unpluggable/compare/v2.1.14...v2.1.16) (2019-07-03)
+
+
+### Bug Fixes
+
+* change filenames ([239369f](http://next-css-unpluggable/commits/239369f))
+* revert libs update ([82d036a](http://next-css-unpluggable/commits/82d036a))
+
+
+
 <a name="2.1.13"></a>
 ## [2.1.13](http://next-css-unpluggable/compare/v2.1.12...v2.1.13) (2019-04-01)
 
