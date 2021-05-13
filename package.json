@@ -17,7 +17,7 @@
     "postcss-loader": "3.0.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^7.3.2",
+    "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^7.3.1",
     "cz-conventional-changelog": "^2.1.0",
     "standard-version": "^4.4.0",
